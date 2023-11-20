@@ -16,14 +16,13 @@ export const getIntervalChart = async (
       { waitUntil: "networkidle2" }
     );
     await sleep(2);
-    //close black friday modal if exists
-    page
-      .waitForSelector("div[class*=tv-dialog__close]", { timeout: 1000 })
-      .then(() => page.$("div[class*=tv-dialog__close]"))
-      .then((el) => el.click())
-      .catch((err) => {});
-    // select dark mode just when you first open the browser and for the first interval
 
+    // check if there is a black friday modal to close
+    if ((await page.$("div[class*=tv-dialog__close]")) !== null) {
+      const el = await page.$("div[class*=tv-dialog__close]");
+      el.click();
+    }
+    // select dark mode just when you first open the browser and for the first interval
     if (index === 0 && shouldTurnDarkMode) {
       await page.waitForSelector(
         ".layout__area--topleft [data-role='button']",
@@ -32,22 +31,15 @@ export const getIntervalChart = async (
         }
       );
       //open menu
-      await page.$eval(
-        ".layout__area--topleft [data-role='button']",
-        (menu) => {
-          menu.click();
-        }
+      await page.$eval(".layout__area--topleft [data-role='button']", (menu) =>
+        menu.click()
       );
       // select dark mode
-      await page.$eval("[value='themeSwitcher']", (darkmode) => {
-        darkmode.click();
-      });
+      (await page.$("[value='themeSwitcher'")).click();
+      await sleep(1);
       // close the menu
-      await page.$eval(
-        ".layout__area--topleft [data-role='button']",
-        (menu) => {
-          menu.click();
-        }
+      await page.$eval(".layout__area--topleft [data-role='button']", (menu) =>
+        menu.click()
       );
 
       await sleep(2);
