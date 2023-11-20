@@ -3,14 +3,23 @@ import * as dotenv from "dotenv";
 dotenv.config({ path: "./src/.env" });
 // in .env you should have your token: TOKEN = "YOUR_TOKEN"
 
-import { respondWithChart, startFetchingCharts } from "./helpers/chart/chart.js";
-import { deleteOrSendPrice, getCoinData, warrningPrice } from "./helpers/price/price.js";
+import {
+  respondWithChart,
+  startFetchingCharts,
+} from "./helpers/chart/chart.js";
+import {
+  deleteOrSendPrice,
+  getCoinData,
+  warrningPrice,
+} from "./helpers/price/price.js";
 import { tokenList } from "./helpers/ayin/tokens_list.js";
 import { getAyinTokensPrice, warnningAyin } from "./helpers/ayin/ayin.js";
 
 // set terminal name to price_bot (for windows run price_bot instead of "npm start" name)
 function setTerminalTitle(title) {
-  process.stdout.write(String.fromCharCode(27) + "]0;" + title + String.fromCharCode(7));
+  process.stdout.write(
+    String.fromCharCode(27) + "]0;" + title + String.fromCharCode(7)
+  );
 }
 setTerminalTitle("Price_bot");
 
@@ -23,10 +32,13 @@ bot.command("p", async (ctx) => {
   let data;
   if (tokenOption) {
     tokenOption = tokenOption.toUpperCase();
-    if (!tokenSet.has(tokenOption) && tokenOption !== "ALL") data = warnningAyin;
+    if (!tokenSet.has(tokenOption) && tokenOption !== "ALL")
+      data = warnningAyin;
     else {
       data = await getAyinTokensPrice(
-        tokenOption === "ALL" ? "all" : tokenList.find((t) => t.symbol === tokenOption)
+        tokenOption === "ALL"
+          ? "all"
+          : tokenList.find((t) => t.symbol === tokenOption)
       );
     }
   } else {

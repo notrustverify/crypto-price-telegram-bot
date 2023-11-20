@@ -2,7 +2,12 @@ const sleep = async (seconds) => {
   return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
 };
 
-export const getIntervalChart = async (browser, interval, index, shouldTurnDarkMode) => {
+export const getIntervalChart = async (
+  browser,
+  interval,
+  index,
+  shouldTurnDarkMode
+) => {
   try {
     const page = await browser.newPage();
     page.setDefaultNavigationTimeout(0);
@@ -11,23 +16,39 @@ export const getIntervalChart = async (browser, interval, index, shouldTurnDarkM
       { waitUntil: "networkidle2" }
     );
     await sleep(2);
+    //close black friday modal if exists
+    page
+      .waitForSelector("div[class*=tv-dialog__close]", { timeout: 1000 })
+      .then(() => page.$("div[class*=tv-dialog__close]"))
+      .then((el) => el.click())
+      .catch((err) => {});
     // select dark mode just when you first open the browser and for the first interval
+
     if (index === 0 && shouldTurnDarkMode) {
-      await page.waitForSelector(".layout__area--topleft [data-role='button']", {
-        timeout: 0,
-      });
+      await page.waitForSelector(
+        ".layout__area--topleft [data-role='button']",
+        {
+          timeout: 0,
+        }
+      );
       //open menu
-      await page.$eval(".layout__area--topleft [data-role='button']", (menu) => {
-        menu.click();
-      });
+      await page.$eval(
+        ".layout__area--topleft [data-role='button']",
+        (menu) => {
+          menu.click();
+        }
+      );
       // select dark mode
       await page.$eval("[value='themeSwitcher']", (darkmode) => {
         darkmode.click();
       });
       // close the menu
-      await page.$eval(".layout__area--topleft [data-role='button']", (menu) => {
-        menu.click();
-      });
+      await page.$eval(
+        ".layout__area--topleft [data-role='button']",
+        (menu) => {
+          menu.click();
+        }
+      );
 
       await sleep(2);
     }
@@ -35,7 +56,11 @@ export const getIntervalChart = async (browser, interval, index, shouldTurnDarkM
     // click to open watchlist (closing the watchlist has bug, so this way is easier to screenshot)
     await page.waitForSelector("[data-name='base']", { timeout: 0 });
     await page.$eval("[data-name='base']", (watchList) => {
-      if (Array.from(watchList.classList).some((clas) => clas.includes("isActive")))
+      if (
+        Array.from(watchList.classList).some((clas) =>
+          clas.includes("isActive")
+        )
+      )
         watchList.click();
     });
     await sleep(1);
