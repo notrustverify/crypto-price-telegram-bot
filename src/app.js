@@ -28,7 +28,7 @@ const bot = new Telegraf(process.env.TOKEN);
 // short price | price of tokens
 bot.command("p", async (ctx) => {
   // if message is older than 10 min, dont respond
-  if (new Date().getTime() - ctx.message.date > 600_000) return;
+  if (new Date().getTime() - ctx.message.date * 1000 > 300_000) return;
   let [tokenOption, ...rest] = ctx.message.text.split(" ").slice(1);
   const tokenSet = new Set(tokenList.map((t) => t.symbol));
   let data;
