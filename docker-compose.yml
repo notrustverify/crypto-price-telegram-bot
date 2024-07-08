@@ -1,0 +1,7 @@
+services:
+ price-bot:
+    build:
+      context: .
+    env_file:
+      - .env
+
