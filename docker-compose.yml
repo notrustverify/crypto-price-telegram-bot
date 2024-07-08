@@ -2,6 +2,7 @@ services:
  price-bot:
     build:
       context: .
+    restart: unless-stopped
     env_file:
       - .env
 
