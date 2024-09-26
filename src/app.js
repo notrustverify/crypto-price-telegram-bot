@@ -81,4 +81,8 @@ bot.command("chart", async (ctx) => {
   }
 });
 
+bot.command("jimmy", async (ctx) => {
+  respondWithChart(ctx, '5m');
+})
+
 bot.launch();
