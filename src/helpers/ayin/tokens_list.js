@@ -13,7 +13,7 @@ export const tokenList = [
   },
   {
     tokenid: "bb440a66dcffdb75862b6ad6df14d659aa6d1ba8490f6282708aa44ebc80a100",
-   contractid: "247rZysrruj8pj2GnFyK2bqB2nU4JsUj7k2idksAp4XMy",    
+   contractid: "vFpZ1DF93x1xGHoXM8rsDBFjpcoSsCi5ZEuA5NG5UJGX",    
       symbol: "APAD",
       decimals: 18,
   },
