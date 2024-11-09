@@ -7,22 +7,20 @@ export const tokenList = [
   },
  {
       tokenid: "11bf07230f5607f626773044414a196d0471d79ba9abc26f148b57b40d983a00",
+      contractid: "26hqVwuNQ7DUEMobdySHyDiW1beoDhQHpNaoXGjoHvK2w",
       symbol: "TOP",
       decimals: 6,
   },
   {
     tokenid: "bb440a66dcffdb75862b6ad6df14d659aa6d1ba8490f6282708aa44ebc80a100",
+   contractid: "247rZysrruj8pj2GnFyK2bqB2nU4JsUj7k2idksAp4XMy",    
       symbol: "APAD",
       decimals: 18,
   },
    {
       tokenid: "cad22f7c98f13fe249c25199c61190a9fb4341f8af9b1c17fcff4cd4b2c3d200",
+      contractid: "27Ub32AhfC9ULKGKGUTdDGU2ehvUN55aLS4oU8nmW3x9M",
       symbol: "EX",
-      decimals: 18,
-    },
-   {
-      tokenid: "9583c452482f5afb7f5a459605349b517cc2ee6885ad3344e72c7cff64fd6b00",
-      symbol: "SWAPA",
       decimals: 18,
     },
     {
