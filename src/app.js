@@ -59,7 +59,7 @@ bot.command("chart", async (ctx) => {
   const [interval, ...rest] = ctx.message.text.split(" ").slice(1);
   switch (interval) {
     case "5m":
-      respondWithChart(ctx, interval);
+      respondWithChart(ctx, 4h);
       break;
     case "15m":
       respondWithChart(ctx, interval);
@@ -82,7 +82,7 @@ bot.command("chart", async (ctx) => {
 });
 
 bot.command("jimmy", async (ctx) => {
-  respondWithChart(ctx, '5m');
+  respondWithChart(ctx, '1d');
 })
 
 bot.launch();
